@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0"><i class="fas fa-eye"></i> Preview Your Information</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        {% if data.profile_image_url %}
+                            <img src="{{ data.profile_image_url }}" class="img-thumbnail mb-3" style="max-width: 200px;">
+                        {% else %}
+                            <div class="bg-light rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 150px; height: 150px;">
+                                <i class="fas fa-user fa-3x text-secondary"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <h5>Personal Information</h5>
+                        <table class="table table-bordered">
+                            <tr><th>Name</th><td>{{ data.name }}</td></tr>
+                            <tr><th>Email</th><td>{{ data.email }}</td></tr>
+                            <tr><th>Department</th><td>{{ data.department }}</td></tr>
+                        </table>
+
+                        {% if docs %}
+                        <h5 class="mt-4">Documents</h5>
+                        <ul class="list-group">
+                            {% for doc in docs %}
+                                <li class="list-group-item">
+                                    <i class="fas fa-file-pdf text-danger"></i>
+                                    {{ doc.split('/')[-1] }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <a href="{{ url_for('main.profile_setup') }}" class="btn btn-secondary w-100">
+                            <i class="fas fa-edit"></i> Edit Information
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <form method="POST" action="{{ url_for('main.send_otp') }}">
+                            <button type="submit" class="btn btn-success w-100">
+                                <i class="fas fa-paper-plane"></i> Submit & Send OTP
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
