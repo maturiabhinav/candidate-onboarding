@@ -12,8 +12,8 @@ load_dotenv()
 app = Flask(__name__)
 
 # Configuration
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev-secret-key")
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL", "sqlite:///site.db")
+app.config["SECRET_KEY"] = os.environ["SECRET_KEY"]
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ["DATABASE_URL"]
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # Email configuration
