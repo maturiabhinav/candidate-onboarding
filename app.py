@@ -205,4 +205,4 @@ with app.app_context():
         print("💡 Try deleting the site.db file and restarting the app")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
