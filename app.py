@@ -204,5 +204,11 @@ with app.app_context():
         print(f"❌ Database error: {e}")
         print("💡 Try deleting the site.db file and restarting the app")
 
+# ==================== HEALTH CHECK ROUTE ====================
+@app.route("/health")
+def health_check():
+    return "OK", 200
+# ==================== END HEALTH CHECK ====================
+
 if __name__ == "__main__":
     app.run()
